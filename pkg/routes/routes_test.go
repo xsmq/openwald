@@ -15,4 +15,3 @@ func TestInitRoutes(t *testing.T) {
 		})
 	}
 }
-

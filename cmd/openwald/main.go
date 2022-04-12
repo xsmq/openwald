@@ -9,4 +9,3 @@ func main() {
 	routes.InitRoutes()
 	beego.Run()
 }
-

@@ -25,4 +25,3 @@ func TestHealthController_HealthCheck(t *testing.T) {
 		})
 	}
 }
-
