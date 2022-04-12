@@ -41,7 +41,7 @@ function logger::log_head() {
 # Log info
 function logger::log_info() {
     local log_msg=${1}
-    echo -e "[INFO] ${msg}"
+    echo -e "[INFO] ${log_msg}"
 }
 
 # Log error
@@ -62,4 +62,3 @@ function logger::log_do() {
    echo -e "${B_PURPLE}[Command]${COLOR_OFF} ${PURPLE}${cmd}${COLOR_OFF}"
    ${cmd}
 }
-
