@@ -8,4 +8,3 @@ import (
 func InitRoutes() {
 	beego.Router("/api/v1/health", &controller.HealthController{}, "Get:HealthCheck")
 }
-

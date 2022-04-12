@@ -11,6 +11,5 @@ type HealthController struct {
 func (c *HealthController) HealthCheck() {
 	c.TplName = "health.html"
 	c.Data["name"] = "HealthCheck"
-	_ = ctrl.Render()
+	_ = c.Render()
 }
-
