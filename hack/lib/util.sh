@@ -31,4 +31,3 @@ function util::verify_go_version () {
         exit 1
     fi
 }
-
