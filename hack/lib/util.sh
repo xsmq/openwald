@@ -21,18 +21,14 @@ set -o pipefail
 OPENWALD_ROOT=$(cd -P "$(dirname "${BASH_SOURCE-$0}")/../../"; pwd -P)
 source "${OPENWALD_ROOT}/hack/lib/env.sh"
 
-
-function openwald::util::version_gt() {
-    test "$(echo "$@" | tr " " "\n" | sort -V | head -n 1)" != "$1"
-}
-
-function openwald::util::check_go_version() {
-    local min_version=$(echo ${MIN_GO_VERSION} | awk -F'go' '{print $2}')
-    local go_version=$(go version | awk '{print $3}' | awk -F'go' '{print $2}')
-    if openwald::util::version_gt ${min_version} ${go_version}; then
-        echo "Detected go version: go${go_version}."
-        echo "Openwald requires go${min_version} or greater."
-        echo "Please install go${min_version} or later."
+function util::verify_go_version () {
+    local go_version
+    IFS=" " read -ra go_version <<< "$(GOFLAGS='' go version)"
+    if [[ "${MIN_GO_VERSION}" != $(echo -e "${MIN_GO_VERSION}\n${go_version[2]}" | sort -s -t. -k 1,1 -k 2,2n -k 3,3n | head -n1) && "${go_version[2]}" != "devel" ]]; then
+        echo "Detected go version: ${go_version[2]}."
+        echo "Openwald requires ${MIN_GO_VERSION} or greater."
+        echo "Please install ${MIN_GO_VERSION} or later."
         exit 1
     fi
 }
+
