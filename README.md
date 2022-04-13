@@ -1,2 +1,2 @@
 # openwald
-Hello openwald!
+Hello openwald community!
