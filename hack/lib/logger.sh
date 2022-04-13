@@ -21,44 +21,47 @@ set -o pipefail
 # Color
 RED='\e[0;31m'          # Red
 GREEN='\e[0;32m'        # Green
+YELLOW='\e[0;33m'       # Yellow
 PURPLE='\e[0;35m'       # Purple
+CYAN='\e[0;36m'         # Cyan
 B_RED='\e[1;31m'        # Bold Red
 B_GREEN='\e[1;32m'      # Bold Green
-B_CYAN='\e[1;36m'       # Bold Cyan
+B_YELLOW='\e[1;33m'     # Bold Yellow
 B_PURPLE='\e[1;35m'     # Bold Purple
+B_CYAN='\e[1;36m'       # Bold Cyan
 COLOR_OFF='\e[0m'       # Text Reset
 
 
-#######
-# Log #
-#######
-# Log head
-function logger::log_head() {
+##############
+# Log Module #
+##############
+# Tips
+function log::tips() {
     local log_msg=${1}
-    echo -e "\n${B_GREEN}[INFO] ${log_msg}${COLOR_OFF}"
+    echo -e "\n${B_GREEN}[TIPS] ${log_msg}${COLOR_OFF}"
 }
 
-# Log info
-function logger::log_info() {
+# Info msg
+function log::info() {
     local log_msg=${1}
-    echo -e "[INFO] ${log_msg}"
+    echo -e "${GREEN}[INFO] ${log_msg}${COLOR_OFF}"
 }
 
-# Log error
-function logger::log_err() {
+# Error msg
+function log::error() {
     local log_msg=${1}
     echo -e "${B_RED}[ERROR] ${log_msg}${COLOR_OFF}"
 }
 
-# Log command
-function logger::log_cmd() {
+# Print command
+function log::print_cmd() {
    local cmd="$*"
    echo -e "${B_PURPLE}[Command]${COLOR_OFF} ${PURPLE}${cmd}${COLOR_OFF}"
 }
 
 # Print and execute command
-function logger::log_do() {
+function log::execute_cmd() {
    local cmd="$*"
-   echo -e "${B_PURPLE}[Command]${COLOR_OFF} ${PURPLE}${cmd}${COLOR_OFF}"
+   log::print_cmd "${cmd}"
    ${cmd}
 }
