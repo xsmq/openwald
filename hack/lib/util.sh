@@ -22,6 +22,11 @@ OPENWALD_ROOT=$(cd -P "$(dirname "${BASH_SOURCE-$0}")/../../"; pwd -P)
 source "${OPENWALD_ROOT}/hack/lib/env.sh"
 source "${OPENWALD_ROOT}/hack/lib/logger.sh"
 
+function util::hello_openwald() {
+    echo -e "${OPENWALD_GREETING}"
+    echo -e "${B_CYAN}Welcome to Openwald!${COLOR_OFF}"
+}
+
 function util::verify_go_version() {
     # Check if go tools exists
     if [[ -z "$(command -v go)" ]]; then
@@ -41,10 +46,4 @@ function util::verify_go_version() {
     fi
 }
 
-function util::hello_openwald() {
-    echo -e "${OPENWALD_GREETING}"
-    echo -e "${B_CYAN}Welcome to Openwald!${COLOR_OFF}"
-}
 
-
-util::hello_openwald
