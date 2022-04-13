@@ -20,8 +20,17 @@ set -o pipefail
 
 OPENWALD_ROOT=$(cd -P "$(dirname "${BASH_SOURCE-$0}")/../../"; pwd -P)
 source "${OPENWALD_ROOT}/hack/lib/env.sh"
+source "${OPENWALD_ROOT}/hack/lib/logger.sh"
 
-function util::verify_go_version () {
+function util::verify_go_version() {
+    # Check if go tools exists
+    if [[ -z "$(command -v go)" ]]; then
+        echo "Cannot find go tool, please fix and retry."
+        echo "See https://golang.google.cn/doc/install"
+        exit 1
+    fi
+    
+    # Check go version
     local go_version
     IFS=" " read -ra go_version <<< "$(GOFLAGS='' go version)"
     if [[ "${MIN_GO_VERSION}" != $(echo -e "${MIN_GO_VERSION}\n${go_version[2]}" | sort -s -t. -k 1,1 -k 2,2n -k 3,3n | head -n1) && "${go_version[2]}" != "devel" ]]; then
@@ -31,3 +40,11 @@ function util::verify_go_version () {
         exit 1
     fi
 }
+
+function util::hello_openwald() {
+    echo -e "${OPENWALD_GREETING}"
+    echo -e "${B_CYAN}Welcome to Openwald!${COLOR_OFF}"
+}
+
+
+util::hello_openwald
