@@ -5,42 +5,60 @@ on:
   pull_request:
 
 jobs:
-  build:
+  # Run this job will skip duplicate actions
+  detect-noop:
+    name: detect-noop
     runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.16
-    - name: Build
-      run: go build -o bin/openwald cmd/openwald/main.go
+      - name: Detect Noop
+        id: skip_check
+        uses: fkirc/skip-duplicate-actions@v3.4.1
+        with:
+          concurrent_skipping: false
+          paths_ignore: '["**/docs/**", "**.md", "**.mdx", "**.png", "**.jpg"]'
+          do_not_skip: '["workflow_dispatch", "schedule", "push"]'
+  build:
+    name: compile
+    needs: detect-noop
+    runs-on: ubuntu-latest
+    if: needs.detect-noop.outputs.should_skip != 'true' 
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.16
+      - name: Compile
+        run: go build -o bin/openwald cmd/openwald/main.go
 
   ut-test:
     name: ut-test
-    needs: build
+    needs: [detect-noop, build]
     runs-on: ubuntu-latest
+    if: needs.detect-noop.outputs.should_skip != 'true' 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.16
-    - name: Run ut-test
-      run: bash hack/test/run_ut.sh
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.16
+      - name: Run ut-test
+        run: bash hack/test/run_ut.sh
 
   e2e-test:
     name: e2e-test
-    needs: build
+    needs: [detect-noop, build]
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Set up Go
-      uses: actions/setup-go@v3
-      with:
-        go-version: 1.16
-    - name: Run e2e-test 
-      run: bash hack/test/run_e2e.sh
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Install Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.16
+      - name: Run e2e-test 
+        run: bash hack/test/run_e2e.sh
