@@ -1,8 +1,9 @@
 package controller
 
 import (
-	"github.com/astaxie/beego"
 	"testing"
+
+	"github.com/astaxie/beego"
 )
 
 func TestHealthController_HealthCheck(t *testing.T) {
@@ -10,7 +11,7 @@ func TestHealthController_HealthCheck(t *testing.T) {
 		Controller beego.Controller
 	}
 	tests := []struct {
-		name string
+		name   string
 		fields fields
 	}{
 		{
