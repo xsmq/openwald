@@ -46,6 +46,7 @@ linters:
   - gosec
   - whitespace
   - revive
+  - misspell
 
 linters-settings:
   goimports:
@@ -53,6 +54,13 @@ linters-settings:
   gocyclo:
     # minimal cyclomatic complexity to report
     min-complexity: 20
+  misspell:
+    # Correct spellings using locale preferences for US or UK.
+    # Setting locale to US will correct the British spelling of 'colour' to 'color'.
+    # Default is to use a neutral variety of English.
+    locale: US
+    # ignore-words:
+    #   - someword
 
 #issues:
 #  # The list of ids of default excludes to include or disable. By default it's empty.
