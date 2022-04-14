@@ -1,4 +1,4 @@
-name: CI
+name: CI-Pipeline
 
 on:
   push:
@@ -8,15 +8,39 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: 1.17
-
+        go-version: 1.16
     - name: Build
-      run: go build -v ./...
+      run: go build -o bin/openwald cmd/openwald/main.go
 
-    - name: Test
-      run: go test -v ./...
+  ut-test:
+    name: ut-test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.16
+    - name: Run ut-test
+      run: bash hack/test/run_ut.sh
+
+  e2e-test:
+    name: e2e-test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.16
+    - name: Run e2e-test 
+      run: bash hack/test/run_e2e.sh
