@@ -22,11 +22,14 @@ OPENWALD_ROOT=$(cd -P "$(dirname "${BASH_SOURCE-$0}")/../../"; pwd -P)
 source "${OPENWALD_ROOT}/hack/lib/env.sh"
 source "${OPENWALD_ROOT}/hack/lib/logger.sh"
 
+# Print ASCII Logo
 function util::hello_openwald() {
     echo -e "${OPENWALD_GREETING}"
     echo -e "${B_CYAN}Welcome to Openwald!${COLOR_OFF}"
 }
 
+# Check go version
+# It requires ${MIN_GO_VERSION} or greater
 function util::verify_go_version() {
     # Check if go tools exists
     if [[ -z "$(command -v go)" ]]; then
@@ -46,4 +49,14 @@ function util::verify_go_version() {
     fi
 }
 
-
+# Install a go tool by command<go install pkg@version>
+# Parameters:
+#  - $1: package name, example: github.com/golangci/golangci-lint/cmd/golangci-lint
+#  - $2: package version, example: v1.15.2
+function util::go_install_tool() {
+    local package="${1}@{2}"
+    log::tips "Go install ${package}"
+    log::execute_cmd GO111MODULE=on go install "${package}"
+    local gopath=$(go env GOPATH | awk -F ':' '{print $1}')
+    export PATH=${gopath}/bin:${PATH}
+}
