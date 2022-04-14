@@ -21,8 +21,13 @@ set -o pipefail
 OPENWALD_ROOT=$(cd -P "$(dirname "${BASH_SOURCE-$0}")/../../"; pwd -P)
 source "${OPENWALD_ROOT}/hack/lib/util.sh"
 
-# Run ut-test
+# Welcome to openwald
 util::hello_openwald
+
+# Check go version
+util::verify_go_version
+
+# Run ut-test
 log::tips "Run ut-test."
 cd "${OPENWALD_ROOT}"
 log::execute_cmd "go test --race --v ./pkg/..."
