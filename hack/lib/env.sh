@@ -33,7 +33,7 @@ unset ENV_DIR
 # ASCII Logo #
 ##############
 # https://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=OPENWALD
-export OPENWALD_GREETING='
+export OPENWALD_GREETING_SHADOW='
 -----------------------------------------------------------------------
   ██████╗ ██████╗ ███████╗███╗   ██╗██╗    ██╗ █████╗ ██╗     ██████╗ 
  ██╔═══██╗██╔══██╗██╔════╝████╗  ██║██║    ██║██╔══██╗██║     ██╔══██╗
@@ -45,7 +45,7 @@ export OPENWALD_GREETING='
 '
 
 # https://textkool.com/en/ascii-art-generator?hl=default&vl=default&font=DOS%20Rebel&text=OPENWALD
-export OPENWALD_GREETING2='
+export OPENWALD_GREETING='
 ------------------------------------------------------------------------------------------------------------------
      ███████    ███████████  ██████████ ██████   █████ █████   ███   █████   █████████   █████       ██████████  
    ███░░░░░███ ░░███░░░░░███░░███░░░░░█░░██████ ░░███ ░░███   ░███  ░░███   ███░░░░░███ ░░███       ░░███░░░░███ 
@@ -62,7 +62,7 @@ export OPENWALD_GREETING2='
 #############
 # OS System #
 #############
-OS_ARCH=$(arch)
+export OS_ARCH=$(arch)
 
 
 ##########
