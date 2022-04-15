@@ -1,0 +1,7 @@
+# File that contains words which will be ignored by codespell.
+# File must contain one word per line.
+# Words are case sensitive.
+# Example: 
+#   word1
+#   word2
+#   word3

@@ -19,7 +19,8 @@ jobs:
           concurrent_skipping: false
           paths_ignore: '["**/docs/**", "**.md", "**.mdx", "**.png", "**.jpg"]'
           do_not_skip: '["workflow_dispatch", "schedule", "push"]'
-
+  
+  # Go linters
   golangci-lint:
     name: golangci-lint
     needs: detect-duplicate
@@ -28,7 +29,7 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Install Go
+      - name: Setup Go
         uses: actions/setup-go@v3
         with:
           go-version: 1.16
@@ -36,13 +37,39 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: v1.45.2
-    #codespell:
-    #name: check-spelling
-    #needs: detect-duplicate
-    #runs-on: ubuntu-latest
-    #if: needs.detect-duplicate.outputs.should_skip != 'true'
-    #steps:
-    # - name: Checkout Code
-    #   uses: actions/checkout@v3
-    # - name: Run check-spelling
-    #   uses: check-spelling/check-spelling@v0.0.20-alpha5
+
+  # Check misspellings
+  codespell:
+    name: codespell
+    needs: detect-duplicate
+    runs-on: ubuntu-latest
+    if: needs.detect-duplicate.outputs.should_skip != 'true'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Run codespell
+        uses: codespell-project/actions-codespell@master
+        with:
+          check_filenames: true
+          # When using this Action in other repos, the --skip option below can be removed
+          # Comma-separated list of list
+          skip: .git
+          ignore_words_file: .codespellignore
+
+  #codespell:
+  #  name: codespell
+  #  needs: detect-duplicate
+  #  runs-on: ubuntu-latest
+  #  if: needs.detect-duplicate.outputs.should_skip != 'true'
+  #  steps:
+  #    - name: Checkout Code
+  #      uses: actions/checkout@v3
+  #    - name: Setup Python
+  #      uses: actions/setup-python@v3
+  #      with:
+  #        python-version: 3.9
+  #        architecture: x64
+  #    - name: Install codespell
+  #      run: pip install codespell==2.1.0
+  #    - name: Run codespell
+  #      run: bash hack/codecheck/check_codespell.sh
