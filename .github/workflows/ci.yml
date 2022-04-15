@@ -6,13 +6,13 @@ on:
 
 jobs:
   # Run this job will skip duplicate actions
-  detect-noop:
-    name: detect-noop
+  detect-duplicate:
+    name: detect-duplicate
     runs-on: ubuntu-latest
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
-      - name: Detect Noop
+      - name: Detect Duplicate
         id: skip_check
         uses: fkirc/skip-duplicate-actions@v3.4.1
         with:
@@ -21,9 +21,9 @@ jobs:
           do_not_skip: '["workflow_dispatch", "schedule", "push"]'
   build:
     name: compile
-    needs: detect-noop
+    needs: detect-duplicate
     runs-on: ubuntu-latest
-    if: needs.detect-noop.outputs.should_skip != 'true' 
+    if: needs.detect-duplicate.outputs.should_skip != 'true' 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -36,9 +36,9 @@ jobs:
 
   ut-test:
     name: ut-test
-    needs: [detect-noop, build]
+    needs: [detect-duplicate, build]
     runs-on: ubuntu-latest
-    if: needs.detect-noop.outputs.should_skip != 'true' 
+    if: needs.detect-duplicate.outputs.should_skip != 'true' 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
 
   e2e-test:
     name: e2e-test
-    needs: [detect-noop, build]
+    needs: [detect-duplicate, build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
