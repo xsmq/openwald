@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-  
+
 # Copyright 2022 Openwald Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,17 +19,19 @@ set -o nounset
 set -o pipefail
 
 OPENWALD_ROOT=$(cd -P "$(dirname "${BASH_SOURCE-$0}")/../../"; pwd -P)
-source "${OPENWALD_ROOT}/hack/lib/util.sh"
+source "${OPENWALD_ROOT}/hack/lib/logger.sh"
 
-# Welcome to openwald
-util::hello_openwald
-
-# Check go version
-util::verify_go_version
-
-# Run ut-test
-log::tips "Run ut-test."
+# Run check-tab
+# Check file type: 
+#     Dockerfile*
+#     *.md
+#     *.sh
+#     *.py
+log::tips "Run check-tab."
 cd "${OPENWALD_ROOT}"
-log::execute_cmd "go test --race --v ./pkg/..."
-UT_TEST_RESULT=$?
-exit ${UT_TEST_RESULT}
+log::print_cmd "git grep -I -n $'\\\t' -- 'Dockerfiler*' '*.md' '*.sh' '*.py'"
+if git grep -I -n $'\t' -- 'Dockerfiler*' '*.md' '*.sh' '*.py'; then
+    log::error "The following files have tabs, please convert tab to space."
+    exit 1
+fi
+log::info "Check-tab success."
