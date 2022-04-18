@@ -23,4 +23,3 @@ source "${OPENWALD_ROOT}/hack/lib/util.sh"
 
 # Run codespell
 log::tips "Run codespell."
-

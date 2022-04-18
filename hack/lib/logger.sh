@@ -50,7 +50,7 @@ function log::info() {
 # Error msg
 function log::error() {
     local log_msg=${1}
-    echo -e "${B_RED}[ERROR] ${log_msg}${COLOR_OFF}"
+    echo -e "${RED}[ERROR] ${log_msg}${COLOR_OFF}"
 }
 
 # Print command
