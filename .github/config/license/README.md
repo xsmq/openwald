@@ -22,17 +22,17 @@ To tell license_finder that any package with the MIT license should be approved,
 license_finder  permitted_licenses add 'MIT' --decisions_file .github/config/license/dependency_decisions.yml
 ```
 
-Apache 2.0 license: 
+Apache 2.0: 
 ```shell
 license_finder  permitted_licenses add 'Apache 2.0' --decisions_file .github/config/license/dependency_decisions.yml
 ```
 
-New BSD license: 
+New BSD: 
 ```shell
 license_finder  permitted_licenses add 'New BSD' --decisions_file .github/config/license/dependency_decisions.yml
 ```
 
 Mozilla Public License 2.0: 
 ```shell
-license_finder  permitted_licenses add 'Mozilla Public License 2.0' --decisions_file .github/config/license/dependency_decisions.yml'
+license_finder  permitted_licenses add 'Mozilla Public License 2.0' --decisions_file .github/config/license/dependency_decisions.yml
 ```

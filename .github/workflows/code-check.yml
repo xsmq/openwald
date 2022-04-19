@@ -17,7 +17,7 @@ jobs:
         uses: fkirc/skip-duplicate-actions@v3.4.1
         with:
           concurrent_skipping: false
-          paths_ignore: '["**/docs/**", "**.md", "**.mdx", "**.png", "**.jpg"]'
+          paths_ignore: '["**.png", "**.jpg"]'
           do_not_skip: '["workflow_dispatch", "schedule", "push"]'
   
   # Go linters
