@@ -1,0 +1,37 @@
+name: license
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  # Run this job will skip duplicate actions
+  detect-duplicate:
+    name: detect-duplicate
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - name: Detect Duplicate
+        id: skip_check
+        uses: fkirc/skip-duplicate-actions@v3.4.1
+        with:
+          concurrent_skipping: false
+          paths_ignore: '["**/docs/**", "**.md", "**.mdx", "**.png", "**.jpg"]'
+          do_not_skip: '["workflow_dispatch", "schedule", "push"]'
+  
+  # Detect the licenses of the packages
+  license-finder:
+    name: license-finder
+    needs: detect-duplicate
+    runs-on: ubuntu-latest
+    if: needs.detect-duplicate.outputs.should_skip != 'true'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+      - name: Run license_finder
+        uses: license_finder --decisions_file .github/config/license/dependency_decisions.yml
