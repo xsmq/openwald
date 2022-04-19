@@ -19,5 +19,8 @@ license_finder --decisions_file .github/config/license/dependency_decisions.yml
 ## Add a license
 
 ```shell
-license_finder  permitted_licenses add MIT --decisions_file .github/config/license/dependency_decisions.yml
+license_finder  permitted_licenses add 'MIT' --decisions_file .github/config/license/dependency_decisions.yml
+license_finder  permitted_licenses add 'Apache 2.0' --decisions_file .github/config/license/dependency_decisions.yml
+license_finder  permitted_licenses add 'New BSD' --decisions_file .github/config/license/dependency_decisions.yml
+license_finder  permitted_licenses add 'Mozilla Public License 2.0' --decisions_file .github/config/license/dependency_decisions.yml
 ```

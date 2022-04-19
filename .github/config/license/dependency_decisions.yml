@@ -1,0 +1,25 @@
+---
+- - :permit
+  - MIT
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2022-04-19 06:37:09.950923069 Z
+- - :permit
+  - Apache 2.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2022-04-19 06:37:29.893011763 Z
+- - :permit
+  - New BSD
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2022-04-19 06:37:57.864806891 Z
+- - :permit
+  - Mozilla Public License 2.0
+  - :who: 
+    :why: 
+    :versions: []
+    :when: 2022-04-19 06:39:36.720413749 Z
