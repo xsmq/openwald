@@ -54,7 +54,7 @@ jobs:
           # When using this Action in other repos, the --skip option below can be removed
           # Comma-separated list of list
           skip: .git
-          ignore_words_file: .codespellignore
+          ignore_words_file: .github/config/codespell/.codespellignore
 
   # Check tab
   check-tab:
