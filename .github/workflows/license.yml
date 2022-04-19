@@ -1,4 +1,4 @@
-name: license
+name: License
 
 on:
   push:
@@ -33,5 +33,7 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.6
+      - name: Install license_finder
+        run: gem install license_finder
       - name: Run license_finder
-        uses: license_finder --decisions_file .github/config/license/dependency_decisions.yml
+        run: license_finder --decisions_file .github/config/license/dependency_decisions.yml
