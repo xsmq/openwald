@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright 2021-2022 The Openwald2 Authors2.
+# Copyright2 2021-2022 The Openwald2 Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -23,3 +23,5 @@ source "${OPENWALD_ROOT}/hack/lib/util.sh"
 
 # Run codespell
 log::tips "Run codespell."
+
+# license-eye -c .github/config/license/.licenserc.yml header check
