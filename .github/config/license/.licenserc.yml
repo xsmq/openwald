@@ -16,7 +16,7 @@
 header: 
   license:
     # the spdx id of the license, it's convenient when your license is standard SPDX license.
-    spdx-id: Apache-2.0 
+    spdx-id: Apache-2.1
     
     # the copyright owner to replace the [owner] in the `spdx-id` template.
     copyright-owner: The Openwald Authors
