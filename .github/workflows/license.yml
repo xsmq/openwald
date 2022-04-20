@@ -36,7 +36,7 @@ jobs:
       - name: Install license_finder
         run: gem install license_finder
       - name: Run license_finder
-        run: license_finder --decisions_file .github/config/license/dependency_decisions.yml
+        run: license_finder --decisions_file .github/config/license_finder/dependency_decisions.yml
   
   # Check license header
   check-license-header:
@@ -51,4 +51,4 @@ jobs:
         uses: apache/skywalking-eyes@v0.2.0
         with:
           log: info
-          config: .github/config/license/.licenserc.yml
+          config: .github/config/license_header/.licenserc.yml
