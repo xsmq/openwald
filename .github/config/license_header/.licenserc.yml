@@ -57,6 +57,7 @@ header:
   # `paths-ignore` are the path list that will be ignored by license-eye.
   paths-ignore: 
     - '**/testdata/**'
+    - 'vendor/**'
     - '**/go.mod'
     - '**/go.sum'
 
