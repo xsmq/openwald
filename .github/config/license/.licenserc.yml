@@ -16,11 +16,11 @@
 header: 
   license:
     # the spdx id of the license, it's convenient when your license is standard SPDX license.
-    spdx-id: Apache-2.0 
+    spdx-id: Apache-2.0
     
     # the copyright owner to replace the [owner] in the `spdx-id` template.
     copyright-owner: The Openwald Authors
-    
+
     # `license` will be used as the content when `fix` command needs to insert a license header.
     content: | 
       Licensed under the Apache License, Version 2.0 (the "License");
@@ -56,7 +56,6 @@ header:
   
   # `paths-ignore` are the path list that will be ignored by license-eye.
   paths-ignore: 
-    - '**/*.md'
     - '**/testdata/**'
     - '**/go.mod'
     - '**/go.sum'
@@ -81,3 +80,4 @@ header:
 dependency:
   files:
     - go.mod
+
