@@ -27,7 +27,7 @@ FAIL_TOTAL=false
 # Check copyright
 log::tips "Check copyright of license header."
 cd "${OPENWALD_ROOT}"
-for file in $(git ls-files | grep -E "\.go$|\.sh$" | grep -v "vendor/"); do
+for file in $(git ls-files | grep -E "\.go$|\.sh$|\.py$" | grep -v "vendor/"); do
     echo -n "Copyright check: ${file} ---"
     FAIL_ONE=false
     if [[ -z $(cat ${file} | grep "Copyright [0-9]\{4\}\(-[0-9]\{4\}\)\? The Openwald Authors") ]]; then

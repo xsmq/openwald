@@ -52,6 +52,7 @@ header:
   # `paths` are the path list that will be checked (and fixed) by license-eye, default is ['**'].
   paths: 
     - '**/*.go'
+    - '**/*.py'
     - '**/*.sh'
   
   # `paths-ignore` are the path list that will be ignored by license-eye.
@@ -77,6 +78,10 @@ header:
       extensions:
         - ".sh"
       comment_style_id: Hashtag
+    Python:
+      extensions:
+        - ".py"
+      comment_style_id: PythonStyle
 
 dependency:
   files:
