@@ -37,3 +37,18 @@ jobs:
         run: gem install license_finder
       - name: Run license_finder
         run: license_finder --decisions_file .github/config/license/dependency_decisions.yml
+  
+  # Check license header
+  check-license-header:
+    name: check-license-header
+    needs: detect-duplicate
+    runs-on: ubuntu-latest
+    if: needs.detect-duplicate.outputs.should_skip != 'true'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Check License Header
+        uses: apache/skywalking-eyes@v0.2.0
+        with:
+          log: info
+          config: .github/config/license/.licenserc.yml
