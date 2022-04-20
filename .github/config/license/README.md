@@ -1,4 +1,4 @@
-# License Checker
+# License Finder
 CI tools for detect the licenses of the packages rely on https://github.com/pivotal/LicenseFinder
 
 ## Requirements
@@ -35,4 +35,29 @@ license_finder permitted_licenses add 'New BSD' --decisions_file .github/config/
 Mozilla Public License 2.0: 
 ```shell
 license_finder permitted_licenses add 'Mozilla Public License 2.0' --decisions_file .github/config/license/dependency_decisions.yml
+```
+
+
+# License Header
+CI tools for check license headers rely on https://github.com/apache/skywalking-eyes
+
+## Requirements
+Go 1.16 or above.
+
+## Installation
+
+```shell
+go install github.com/apache/skywalking-eyes/cmd/license-eye@latest
+```
+
+## Usage
+
+### Check License Header
+```shell
+license-eye -c .github/config/license/.licenserc.yml header check
+```
+
+### Fix License Header
+ ```shell
+license-eye -c .github/config/license/.licenserc.yml header fix
 ```
