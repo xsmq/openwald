@@ -34,7 +34,7 @@ jobs:
         with:
           ruby-version: 2.6
       - name: Install license_finder
-        run: gem install license_finder
+        run: gem install license_finder -v 7.0.1
       - name: Run license_finder
         run: license_finder --decisions_file .github/config/license_finder/dependency_decisions.yml
   
