@@ -7,7 +7,7 @@ License Finder requires Ruby 2.4.0 or greater to run.
 ## Installation
 
 ```shell
-gem install license_finder
+gem install license_finder -v 7.0.1
 ```
 
 ## Usage
