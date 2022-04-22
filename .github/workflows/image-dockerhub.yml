@@ -27,5 +27,5 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Publish Images
         run: |
-          go build -o bin/openwald cmd/openwald/main.go 
+          CGO_ENABLED=0 GOOS=$(go env GOOS) go build -o bin/openwald cmd/openwald/main.go 
           docker buildx build --push --platform="linux/amd64,linux/arm64" --tag="openwald/openwald:latest" --file=docker/Dockerfile .
