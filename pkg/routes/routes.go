@@ -23,4 +23,5 @@ import (
 
 func InitRoutes() {
 	beego.Router("/api/v1/health", &controller.HealthController{}, "Get:HealthCheck")
+	beego.Router("/api/v1/hello", &controller.HealthController{}, "Get:HelloOpenwald")
 }
