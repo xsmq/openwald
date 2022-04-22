@@ -31,6 +31,6 @@ func (c *HealthController) HealthCheck() {
 }
 
 func (c *HealthController) HelloOpenwald() {
-	c.Ctx.WriteString("<!DOCTYPE html>\n<html>\n<head>\n\t<meta charset=\"uft-8\">\n\t<title>hello</title>\n" + 
+	c.Ctx.WriteString("<!DOCTYPE html>\n<html>\n<head>\n\t<meta charset=\"uft-8\">\n\t<title>hello</title>\n" +
 		"</head>\n<body>\n\t<h1>Welcome to Openwald Community!</h1>\n</body>\n</html>")
 }
