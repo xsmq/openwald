@@ -28,4 +28,4 @@ jobs:
       - name: Publish Images
         run: |
           go build -o bin/openwald cmd/openwald/main.go 
-          docker buildx build --push --platform="linux/amd64,linux/arm64" --tag=openwald:latest --file=docker/Dockerfile .
+          docker buildx build --push --platform="linux/amd64,linux/arm64" --tag="openwald/openwald:latest" --file=docker/Dockerfile .
