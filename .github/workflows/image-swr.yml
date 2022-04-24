@@ -23,10 +23,10 @@ jobs:
       - name: Login Huaweicloud-SWR
         uses: huaweicloud/swr-login@v1
         with:
-          region: cn-east-3 
+          region: cn-east-3
           access-key-id: ${{ secrets.SWR_AK }}
           access-key-secret: ${{ secrets.SWR_SK }}
       - name: Publish Images
         run: |
           CGO_ENABLED=0 GOOS=$(go env GOOS) go build -o bin/openwald cmd/openwald/main.go 
-          docker buildx build --push --platform="linux/amd64" --tag="openwald/openwald:latest" --file=docker/Dockerfile .
+          docker buildx build --push --platform="linux/amd64" --tag="swr.cn-east-3.myhuaweicloud.com/openwald/openwald:latest" --file=docker/Dockerfile .
