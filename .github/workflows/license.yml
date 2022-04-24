@@ -2,11 +2,12 @@ name: License
 
 on:
   push:
-    branchs:
+    branches:
       - master
       - release-*
       - feature-*
   pull_request:
+    branches:
       - master
       - release-*
       - feature-*
