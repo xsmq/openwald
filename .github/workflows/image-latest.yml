@@ -13,7 +13,6 @@ jobs:
   publish-dockerhub:
     name: publish-dockerhub
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -38,7 +37,6 @@ jobs:
   publish-swr:
     name: publish-swr
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
     env:
       SWR_REGION: cn-east-3
     steps:
