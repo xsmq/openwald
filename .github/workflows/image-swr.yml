@@ -4,6 +4,8 @@ on:
   release:
     types:
       - published
+  push:
+  pull_request:
 
 jobs:
   publish-image:
@@ -28,5 +30,6 @@ jobs:
           access-key-secret: ${{ secrets.SWR_SK }}
       - name: Publish Images
         run: |
+          env
           CGO_ENABLED=0 GOOS=$(go env GOOS) go build -o bin/openwald cmd/openwald/main.go 
           docker buildx build --push --platform="linux/amd64" --tag="swr.cn-east-3.myhuaweicloud.com/openwald/openwald:latest" --file=docker/Dockerfile .
