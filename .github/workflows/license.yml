@@ -2,7 +2,18 @@ name: License
 
 on:
   push:
+    branchs:
+      - master
+      - release-*
+      - feature-*
   pull_request:
+      - master
+      - release-*
+      - feature-*
+  workflow_dispatch: {}
+
+env:
+  RUBY_VERSION: 2.6
 
 jobs:
   # Run this job will skip duplicate actions
@@ -16,6 +27,7 @@ jobs:
         id: skip_check
         uses: fkirc/skip-duplicate-actions@v3.4.1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           concurrent_skipping: false
           paths_ignore: '["**/docs/**", "**.md", "**.mdx", "**.png", "**.jpg"]'
           do_not_skip: '["workflow_dispatch", "schedule", "push"]'
@@ -32,7 +44,7 @@ jobs:
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
-          ruby-version: 2.6
+          ruby-version: ${{ env.RUBY_VERSION }}
       - name: Install license_finder
         run: gem install license_finder -v 7.0.1
       - name: Run license_finder
