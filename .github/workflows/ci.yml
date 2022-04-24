@@ -2,7 +2,18 @@ name: CI-Pipeline
 
 on:
   push:
+    branchs:
+      - master
+      - release-*
+      - feature-*
   pull_request:
+      - master
+      - release-*
+      - feature-*
+  workflow_dispatch: {}
+
+env:
+  GO_VERSION: 1.16
 
 jobs:
   # Run this job will skip duplicate actions
@@ -16,6 +27,7 @@ jobs:
         id: skip_check
         uses: fkirc/skip-duplicate-actions@v3.4.1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           concurrent_skipping: false
           paths_ignore: '["**/docs/**", "**.md", "**.mdx", "**.png", "**.jpg"]'
           do_not_skip: '["workflow_dispatch", "schedule", "push"]'
@@ -30,7 +42,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.16
+          go-version: ${{ env.GO_VERSION }}
       - name: Compile
         run: go build -o bin/openwald cmd/openwald/main.go
 
@@ -45,7 +57,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.16
+          go-version: ${{ env.GO_VERSION }}
       - name: Run ut-test
         run: bash hack/test/run_ut.sh
 
@@ -59,6 +71,6 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v3
         with:
-          go-version: 1.16
+          go-version: ${{ env.GO_VERSION }}
       - name: Run e2e-test 
         run: bash hack/test/run_e2e.sh
