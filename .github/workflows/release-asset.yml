@@ -35,9 +35,7 @@ jobs:
           go-version: ${{ env.GO_VERSION }}
       - name: Compile
         run: |
-          echo $GOOS
-          echo $GOARCH
-          CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o bin/openwald cmd/openwald/main.go
+          CGO_ENABLED=0 GOOS=${GOOS} GOARCH=${GOARCH} go build -o bin/openwald cmd/openwald/main.go
         env: 
           GOOS: ${{ matrix.go_os }}
           GOARCH: ${{ matrix.go_arch}}
