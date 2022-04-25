@@ -13,11 +13,6 @@ on:
       - feature-*
   workflow_dispatch: {}
 
-env:
-  RUBY_VERSION: 2.6
-  LICENSE_FINDER_VERSION: 7.0.1
-  FOSSA_APK_KEY: ffea502fdb1e7a32e4b30f4834a03ff0
-
 jobs:
   # Run this job will skip duplicate actions
   detect-duplicate:
@@ -41,6 +36,9 @@ jobs:
     needs: detect-duplicate
     runs-on: ubuntu-latest
     if: needs.detect-duplicate.outputs.should_skip != 'true'
+    env:
+      RUBY_VERSION: 2.6
+      LICENSE_FINDER_VERSION: 7.0.1
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -86,6 +84,8 @@ jobs:
     needs: detect-duplicate
     runs-on: ubuntu-latest
     if: needs.detect-duplicate.outputs.should_skip != 'true'
+    env:
+      FOSSA_APK_KEY: ffea502fdb1e7a32e4b30f4834a03ff0
     steps:
       - name: checkout code
         uses: actions/checkout@v2
