@@ -40,9 +40,38 @@ jobs:
           GOOS: ${{ matrix.go_os }}
           GOARCH: ${{ matrix.go_arch}}
       - name: Package
-        run: tar -zcf openwald-${{ env.OPENWALD_VERSION }}-${{ matrix.go_os }}-${{ matrix.go_arch }}.tar.gz bin/openwald LICENSE
-      - name: Upload Assets
+        run: |
+          tar -zcf openwald-${{ env.OPENWALD_VERSION }}-${{ matrix.go_os }}-${{ matrix.go_arch }}.tar.gz bin/openwald LICENSE && sha256sum openwald-${{ env.OPENWALD_VERSION }}-${{ matrix.go_os }}-${{ matrix.go_arch }}.tar.gz > openwald-${{ env.OPENWALD_VERSION }}-${{ matrix.go_os }}-${{ matrix.go_arch }}.txt
+      - name: Upload Asset
         uses: softprops/action-gh-release@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: openwald-${{ env.OPENWALD_VERSION }}-${{ matrix.go_os }}-${{ matrix.go_arch }}.tar.gz
+      - name: Upload sha256sum
+        uses: actions/upload-artifact@v3
+        with:
+          name: sha256sum
+          path: openwald-${{ env.OPENWALD_VERSION }}-${{ matrix.go_os }}-${{ matrix.go_arch }}.txt
+          retention-days: 1
+  
+  upload-sha256sum:
+    name: upload-sha256sum
+    needs: upload-asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download sha256sum
+        uses: actions/download-artifact@v3
+        with:
+          name: sha256sum
+          path: artifact
+      - name: Merge sha256sum File
+        working-directory: artifact
+        run: |
+          for file in *; do
+            cat ${file} >> sha256sums.txt
+          done
+      - name: Upload Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: artifact/sha256sums.txt
