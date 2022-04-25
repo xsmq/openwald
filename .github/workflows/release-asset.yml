@@ -24,6 +24,8 @@ jobs:
             go_arch: amd64
           - go_os: darwin
             go_arch: arm64
+          - go_os: windows
+            go_arch: amd64
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -32,7 +34,10 @@ jobs:
         with:
           go-version: ${{ env.GO_VERSION }}
       - name: Compile
-        run: CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o bin/openwald cmd/openwald/main.go
+        run: |
+          echo $GOOS
+          echo $GOARCH
+          CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o bin/openwald cmd/openwald/main.go
         env: 
           GOOS: ${{ matrix.go_os }}
           GOARCH: ${{ matrix.go_arch}}
