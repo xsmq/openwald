@@ -1,0 +1,45 @@
+name: release-asset
+
+on:
+  release:
+    types:
+      - published
+
+env:
+  GO_VERSION: 1.16
+  OPENWALD_VERSION: ${{ github.ref_name }}
+
+jobs:
+  upload-asset:
+    name: upload-asset
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - go_os: linux
+            go_arch: amd64
+          - go_os: linux
+            go_arch: arm64
+          - go_os: darwin
+            go_arch: amd64
+          - go_os: darwin
+            go_arch: arm64
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: ${{ env.GO_VERSION }}
+      - name: Compile
+        run: CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o bin/openwald cmd/openwald/main.go
+        env: 
+          GOOS: ${{ matrix.go_os }}
+          GOARCH: ${{ matrix.go_arch}}
+      - name: package
+        run: tar -zcf openwald-${{ matrix.go_os }}-${{ matrix.go_arch }}.tar.gz bin/openwald LICENSE
+      - name: Upload Assets
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          file: openwald-${{ matrix.go_os }}-${{ matrix.go_arch }}.tar.gz
