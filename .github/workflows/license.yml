@@ -15,6 +15,8 @@ on:
 
 env:
   RUBY_VERSION: 2.6
+  LICENSE_FINDER_VERSION: 7.0.1
+  FOSSA_APK_KEY: ffea502fdb1e7a32e4b30f4834a03ff0
 
 jobs:
   # Run this job will skip duplicate actions
@@ -47,7 +49,7 @@ jobs:
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
       - name: Install license_finder
-        run: gem install license_finder -v 7.0.1
+        run: gem install license_finder -v ${{ env.LICENSE_FINDER_VERSION }}
       - name: Run license_finder
         run: license_finder --decisions_file .github/config/license_finder/dependency_decisions.yml
   
@@ -90,4 +92,4 @@ jobs:
       - name: Run FOSSA Scan
         uses: fossas/fossa-action@v1
         with:
-          api-key: ${{ secrets.FOSSA_API_KEY }}
+          api-key: ${{ env.FOSSA_APK_KEY }}
