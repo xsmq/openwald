@@ -1,4 +1,4 @@
-# openwald
+# Openwald
 
 ![build](https://github.com/openwalds/openwald/actions/workflows/ci.yml/badge.svg)
 [![LICENSE](https://img.shields.io/github/license/openwalds/openwald.svg)](/LICENSE)
