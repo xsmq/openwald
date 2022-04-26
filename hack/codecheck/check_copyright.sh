@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright 2022 The Openwald Authors.
+# Copyright 2022 The OpenWald Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ cd "${OPENWALD_ROOT}"
 for file in $(git ls-files | grep -E "\.go$|\.sh$|\.py$" | grep -v "vendor/"); do
     echo -n "Copyright check: ${file} ---"
     FAIL_ONE=false
-    if [[ -z $(cat ${file} | grep "Copyright [0-9]\{4\}\(-[0-9]\{4\}\)\? The Openwald Authors") ]]; then
+    if [[ -z $(cat ${file} | grep "Copyright [0-9]\{4\}\(-[0-9]\{4\}\)\? The OpenWald Authors") ]]; then
         FAIL_ONE=true
     fi
     if [[ "${FAIL_ONE}" = "true" ]]; then

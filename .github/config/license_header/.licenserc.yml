@@ -1,4 +1,4 @@
-# Copyright 2022 The Openwald Authors.
+# Copyright 2022 The OpenWald Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ header:
     spdx-id: Apache-2.0
     
     # the copyright owner to replace the [owner] in the `spdx-id` template.
-    copyright-owner: The Openwald Authors
+    copyright-owner: The OpenWald Authors
 
     # `license` will be used as the content when `fix` command needs to insert a license header.
     content: | 
