@@ -10,8 +10,8 @@ env:
   OPENWALD_VERSION: ${{ github.ref_name }}
 
 jobs:
-  upload-asset:
-    name: upload-asset
+  upload-version:
+    name: upload-version
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -47,7 +47,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           files: openwald-${{ env.OPENWALD_VERSION }}-${{ matrix.go_os }}-${{ matrix.go_arch }}.tar.gz
-      - name: Upload sha256sum
+      - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: sha256sum
@@ -56,16 +56,16 @@ jobs:
   
   upload-sha256sum:
     name: upload-sha256sum
-    needs: upload-asset
+    needs: upload-version
     runs-on: ubuntu-latest
     steps:
-      - name: Download sha256sum
+      - name: Download Artifact
         uses: actions/download-artifact@v3
         with:
           name: sha256sum
-          path: artifact
-      - name: Merge sha256sum File
-        working-directory: artifact
+          path: download-artifact
+      - name: Merge sha256sum
+        working-directory: download-artifact
         run: |
           for file in *; do
             cat ${file} >> sha256sums.txt
