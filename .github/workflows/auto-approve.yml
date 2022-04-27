@@ -1,0 +1,17 @@
+name: auto-approve-workflow
+
+on:
+  schedule:
+    - cron: "*/3 * * * *"
+
+jobs:
+  auto-approve:
+    name: auto-approve
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto Approve
+        uses: mheap/automatic-approve-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          workflows: "ci.yml,code-check.yml,license.yml"
+          dangerous_files: ".github/workflows"
