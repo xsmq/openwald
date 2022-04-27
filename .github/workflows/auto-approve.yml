@@ -1,8 +1,9 @@
-name: auto-approve-workflow
+name: approve-workflow
 
 on:
   schedule:
-    - cron: "*/3 * * * *"
+    - cron: '30 6,12,18,22 * * *'
+    - cron: '*/2 * * * *'
 
 jobs:
   auto-approve:
@@ -15,3 +16,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           workflows: "ci.yml,code-check.yml,license.yml"
           dangerous_files: ".github/workflows"
+
