@@ -3,7 +3,8 @@ name: approve-workflow
 on:
   schedule:
     - cron: '30 6,12,18,22 * * *'
-    - cron: '*/2 * * * *'
+    - cron: '0-59 * * * *'
+    - cron: '44 14 * * *'
 
 jobs:
   auto-approve:
