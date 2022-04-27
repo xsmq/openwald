@@ -2,9 +2,9 @@ name: approve-workflow
 
 on:
   schedule:
-    - cron: '30 6,12,18,22 * * *'
-    - cron: '0-59 * * * *'
-    - cron: '44 14 * * *'
+    #- cron: '30 6,12,18,22 * * *'
+    - cron: '* * * * *'
+  workflow_dispatch: {}
 
 jobs:
   auto-approve:
