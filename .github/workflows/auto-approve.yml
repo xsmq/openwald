@@ -1,3 +1,7 @@
+# Automatically approve workflow runs from first time contributors.
+# This action will be run on a schedule within the organisation.
+# See https://github.com/mheap/automatic-approve-action
+
 name: approve-workflow
 
 on:
