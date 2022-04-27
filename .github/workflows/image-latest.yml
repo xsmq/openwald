@@ -13,6 +13,9 @@ jobs:
   publish-dockerhub:
     name: publish-dockerhub
     runs-on: ubuntu-latest
+    # Block job running for fork repository.
+    # Otherwise it will fail without secret.
+    if: ${{ github.repository == 'openwalds/openwald' }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -37,6 +40,9 @@ jobs:
   publish-swr:
     name: publish-swr
     runs-on: ubuntu-latest
+    # Block job running for fork repository.
+    # Otherwise it will fail without secret.
+    if: ${{ github.repository == 'openwalds/openwald' }}
     env:
       SWR_REGION: cn-east-3
     steps:

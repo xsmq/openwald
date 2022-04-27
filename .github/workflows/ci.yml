@@ -36,7 +36,7 @@ jobs:
     name: compile
     needs: detect-duplicate
     runs-on: ubuntu-latest
-    if: needs.detect-duplicate.outputs.should_skip != 'true' 
+    if: needs.detect-duplicate.outputs.should_skip != 'true'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
     name: ut-test
     needs: [detect-duplicate, build]
     runs-on: ubuntu-latest
-    if: needs.detect-duplicate.outputs.should_skip != 'true' 
+    if: needs.detect-duplicate.outputs.should_skip != 'true'
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
