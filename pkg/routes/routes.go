@@ -1,5 +1,5 @@
 /*
-Copyright 2021-2022 The Openwald Authors.
+Copyright 2022 The OpenWald Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import (
 	"github.com/openwald/openwald/pkg/controller"
 )
 
+// InitRoutes init routes
 func InitRoutes() {
 	beego.Router("/api/v1/health", &controller.HealthController{}, "Get:HealthCheck")
 	beego.Router("/api/v1/hello", &controller.HealthController{}, "Get:HelloOpenwald")

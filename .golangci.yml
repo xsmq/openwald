@@ -46,27 +46,19 @@ linters:
   - gosec
   - whitespace
   - revive
-  - misspell
 
 linters-settings:
   goimports:
     local-prefixes: github.com/openwalds/openwald
   gocyclo:
     # minimal cyclomatic complexity to report
-    min-complexity: 20
-  misspell:
-    # Correct spellings using locale preferences for US or UK.
-    # Setting locale to US will correct the British spelling of 'colour' to 'color'.
-    # Default is to use a neutral variety of English.
-    locale: US
-    # ignore-words:
-    #   - someword
+    min-complexity: 15
 
-#issues:
-#  # The list of ids of default excludes to include or disable. By default it's empty.
-#  include:
-#  # disable excluding of issues about comments from revive
-#  # see https://golangci-lint.run/usage/configuration/#command-line-options for more info
-#  - EXC0012
-#  - EXC0013
-#  - EXC0014
+issues:
+  # The list of ids of default excludes to include or disable. By default it's empty.
+  include:
+  # disable excluding of issues about comments from revive
+  # see https://golangci-lint.run/usage/configuration/#command-line-options for more info
+  - EXC0012
+  - EXC0013
+  - EXC0014

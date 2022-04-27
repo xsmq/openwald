@@ -7,11 +7,11 @@ Python 3.6 or above.
 ## Installation
 
 ```shell
-pip install codespell
+pip install codespell==2.1.0
 ```
 
 ## Usage
 
 ```shell
-codespell -q 7 -f ".git" -I .github/config/codespell/.codespellignore
+codespell -q 7 -f -S ".git" -I .github/config/codespell/.codespellignore
 ```
