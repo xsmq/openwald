@@ -13,6 +13,8 @@ jobs:
   auto-approve:
     name: auto-approve
     runs-on: ubuntu-latest
+    # Block job running for fork repository
+    if: ${{ github.repository == 'openwalds/openwald' }}
     steps:
       - name: Auto Approve
         uses: mheap/automatic-approve-action@v1
