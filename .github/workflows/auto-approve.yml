@@ -2,8 +2,8 @@ name: approve-workflow
 
 on:
   schedule:
-    #- cron: '30 6,12,18,22 * * *'
-    - cron: '* * * * *'
+    - cron: '*/15 * * * *'
+    #- cron: '0 */4 * * *'
   workflow_dispatch: {}
 
 jobs:
@@ -17,4 +17,3 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           workflows: "ci.yml,code-check.yml,license.yml"
           dangerous_files: ".github/workflows"
-
