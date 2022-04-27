@@ -6,6 +6,4 @@
 
 ## Openwald: Open, Cloud Native Service Full Lifecycle Management Platform
 
-Hello openwald community!
-
-Test
+Welcome to OpenWald community!
