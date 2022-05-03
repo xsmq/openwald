@@ -13,6 +13,7 @@ jobs:
   upload-version:
     name: upload-version
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     strategy:
       matrix:
         include:
@@ -58,6 +59,7 @@ jobs:
     name: upload-sha256sum
     needs: upload-version
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3

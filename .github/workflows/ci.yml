@@ -21,6 +21,7 @@ jobs:
   detect-duplicate:
     name: detect-duplicate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
@@ -36,6 +37,7 @@ jobs:
     name: compile
     needs: detect-duplicate
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     if: needs.detect-duplicate.outputs.should_skip != 'true'
     steps:
       - name: Checkout Code
@@ -51,6 +53,7 @@ jobs:
     name: ut-test
     needs: [detect-duplicate, build]
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     if: needs.detect-duplicate.outputs.should_skip != 'true'
     steps:
       - name: Checkout Code
@@ -66,6 +69,7 @@ jobs:
     name: e2e-test
     needs: [detect-duplicate, build]
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
