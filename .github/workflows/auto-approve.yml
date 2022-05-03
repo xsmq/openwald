@@ -13,6 +13,7 @@ jobs:
   auto-approve:
     name: auto-approve
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     # Block job running for fork repository
     if: ${{ github.repository == 'openwalds/openwald' }}
     steps:

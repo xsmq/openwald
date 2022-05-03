@@ -18,6 +18,7 @@ jobs:
   detect-duplicate:
     name: detect-duplicate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     outputs:
       should_skip: ${{ steps.skip_check.outputs.should_skip }}
     steps:
@@ -35,6 +36,7 @@ jobs:
     name: license-finder
     needs: detect-duplicate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: needs.detect-duplicate.outputs.should_skip != 'true'
     env:
       RUBY_VERSION: 2.6
@@ -56,6 +58,7 @@ jobs:
     name: check-license-header
     needs: detect-duplicate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: needs.detect-duplicate.outputs.should_skip != 'true'
     steps:
       - name: Checkout Code
@@ -71,6 +74,7 @@ jobs:
     name: check-copyright
     needs: detect-duplicate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: needs.detect-duplicate.outputs.should_skip != 'true'
     steps:
       - name: Checkout Code
@@ -83,6 +87,7 @@ jobs:
     name: fossa-scan
     needs: detect-duplicate
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: needs.detect-duplicate.outputs.should_skip != 'true'
     env:
       FOSSA_APK_KEY: ffea502fdb1e7a32e4b30f4834a03ff0

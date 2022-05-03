@@ -13,6 +13,7 @@ jobs:
   publish-dockerhub:
     name: publish-dockerhub
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     # Block job running for fork repository.
     # Otherwise it will fail without secret.
     if: ${{ github.repository == 'openwalds/openwald' }}
@@ -40,6 +41,7 @@ jobs:
   publish-swr:
     name: publish-swr
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     # Block job running for fork repository.
     # Otherwise it will fail without secret.
     if: ${{ github.repository == 'openwalds/openwald' }}
