@@ -25,7 +25,7 @@ exemptAssignees: false
 # Label to use when marking as stale
 staleLabel: lifecycle/stale
 
-pull:
+pulls:
   # Number of days of inactivity before an Issue or Pull Request becomes stale
   daysUntilClose: 1
 
