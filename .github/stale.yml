@@ -27,11 +27,11 @@ staleLabel: lifecycle/stale
 
 pulls:
   # Number of days of inactivity before an Issue or Pull Request becomes stale
-  daysUntilClose: 1
+  daysUntilClose: 90
 
   # Number of days of inactivity before an Issue or Pull Request with the stale label is closed.
   # Set to false to disable. If disabled, issues still need to be closed manually, but will remain marked as stale.
-  daysUntilStale: 1
+  daysUntilStale: 180
 
   # Comment to post when marking as stale. Set to `false` to disable
   markComment: >
@@ -47,11 +47,11 @@ pulls:
 
 issues:
   # Number of days of inactivity before an Issue or Pull Request becomes stale
-  daysUntilClose: 1
+  daysUntilClose: 90
 
   # Number of days of inactivity before an Issue or Pull Request with the stale label is closed.
   # Set to false to disable. If disabled, issues still need to be closed manually, but will remain marked as stale.
-  daysUntilStale: 1
+  daysUntilStale: 180
 
   # Comment to post when marking as stale. Set to `false` to disable
   markComment: >
